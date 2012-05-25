@@ -1,7 +1,10 @@
 # William-client
 
 William-client acts as an interface between
-[William](http://github.com/codeswamp/william) and your Ruby application.
+[William](http://github.com/codeswamp/william) and your Ruby application. It
+will ideally only be a thin 
+[HyperClient](http://github.com/codeswamp/hyper_client) wrapper, but could
+evolve to incorporate more of William's business logic.
 
 # Main goals
 
