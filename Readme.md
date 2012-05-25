@@ -11,7 +11,7 @@ William-client acts as an interface between
 
 # Usage
 
-```
+```Ruby
 # Authentication
 william = William::Client.new(api_key)
 
@@ -30,14 +30,14 @@ william.subscriptions.first.invoices
 In order to receive callbacks from william, `william-client` could be mounted
 as a rack application:
 
-```
+```Ruby
 # in routes.rb
 mount William::Client::RackApp, to: '/william'
 ```
 
 Then, you could subscribe to them:
 
-```
+```Ruby
 William::Client.callbacks.on_failed_payment do |invoice, subscription|
   # Shut off the service
 end
