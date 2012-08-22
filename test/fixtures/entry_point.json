@@ -1,0 +1,10 @@
+{
+  "_links":{
+    "self":{
+      "href":"http://localhost:3000/apps/5024e70c2b04a02926000001"
+    },
+    "subscriptions":{
+      "href":"http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions"
+    }
+  }
+}

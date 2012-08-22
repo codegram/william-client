@@ -1,0 +1,43 @@
+{
+  "_links":{
+    "subscription":{
+      "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006"
+    },
+    "self":{
+      "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006/coupons"
+    }
+  },
+  "_embedded":{
+    "coupons":
+    [
+      {
+        "_links":{
+          "subscription":{
+            "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006"
+          },
+          "self":{
+            "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006/coupons/50320a582b04a01a1600000b"
+          }
+        },
+        "id":"50320a582b04a01a1600000b",
+        "description":"By the face3",
+        "amount":"150.23",
+        "used_at":null
+      },
+      {
+        "_links":{
+          "subscription":{
+            "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006"
+          },
+          "self":{
+            "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006/coupons/50334aca2b04a0139e000001"
+          }
+        },
+        "id":"50334aca2b04a0139e000001",
+        "description":"By the face 10",
+        "amount":"250.23",
+        "used_at":null
+      }
+    ]
+  }
+}
