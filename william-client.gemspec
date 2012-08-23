@@ -2,23 +2,22 @@
 $:.push File.expand_path("../lib", __FILE__)
 require "william-client/version"
 
-Gem::Specification.new do |s|
-  s.name        = "william-client"
-  s.version     = William::Client::VERSION
-  s.authors     = ["Josep Jaume"]
-  s.email       = ["josepjaume@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+Gem::Specification.new do |gem|
+  gem.name        = "william-client"
+  gem.version     = William::Client::VERSION
+  gem.authors     = ["Josep Jaume", "Marc Divins"]
+  gem.email       = ["josepjaume@gmail.com", "marcdivc@gmail.com"]
+  gem.homepage    = ""
+  gem.summary     = %q{William-client is a simple wrapper for William hypermedia API.}
+  gem.description = %q{William-client is a simple wrapper for William hypermedia API.}
 
-  s.rubyforge_project = "william-client"
-
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  gem.files         = `git ls-files`.split("\n")
+  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  gem.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  s.add_runtime_dependency "hyperclient"
+  gem.add_runtime_dependency "hyperclient"
+  gem.add_development_dependency "rspec"
+  gem.add_development_dependency "webmock"
 end
