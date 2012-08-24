@@ -6,9 +6,9 @@ module William
   class Client
     include Hyperclient
 
-    entry_point William.config.william_api_url
+    entry_point{ William.config.william_api_url }
     http_options(headers: {"Content-Type" => "application/json"}, debug: true)
-    auth :digest, William.config.app_name, William.config.app_token
+    auth{ {type: :digest, user: William.config.app_name, password: William.config.app_token} }
 
     # Public: lists all subscriptions of the application.
     #
