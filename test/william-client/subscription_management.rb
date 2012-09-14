@@ -5,9 +5,9 @@ describe William::Client do
     William::Client.new
   end
 
-  def stub_request_factory(file, url, method = :get)
+  def stub_request_factory(file, url)
     response = File.read(file)
-    stub_request(method, url).
+    stub_request(:get, url).
       with(headers: {'Content-Type'=>'application/json'}).
       to_return(status: 200, body: response, headers: {content_type: 'application/json'})
     response
