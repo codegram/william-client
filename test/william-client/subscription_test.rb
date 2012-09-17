@@ -1,58 +1,69 @@
 require_relative '../test_helper'
 
-describe William::SubscriptionsCollection do
-  let(:client) do
-    William::Client.new
-  end
-
-  let(:subscriptions) do
-    William::SubscriptionsCollection.new(client)
-  end
-
-  def stub_request_factory(file, url, method = :get)
-    response = File.read(file)
-    stub_request(method, url).
-      with(headers: {'Content-Type'=>'application/json'}).
-      to_return(status: 200, body: response, headers: {content_type: 'application/json'})
-    response
+describe William::Subscription do
+  let(:subscription) do
+    collection = William::SubscriptionsCollection.new(William::Client.new)
+    collection.find('5024e70c2b04a02926000006')
   end
 
   before do
     stub_request_factory('test/fixtures/entry_point.json','http://localhost:3000')
     stub_request_factory('test/fixtures/subscriptions.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions')
+    stub_request_factory('test/fixtures/subscription_6.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions?id=5024e70c2b04a02926000006')
   end
 
-  describe 'list_subscriptions' do
-    it 'shows all subscriptions of current app' do
-      subscriptions.first.william_id.should == "5024eac92b04a02d08000001"
-      subscriptions.last.william_id.should == "5024e70c2b04a02926000006"
-      subscriptions.count.should == 2
+  describe 'attributes' do
+    describe 'william_id' do
+      it 'returns subscription id in william system' do
+        subscription.william_id.should eq('5024e70c2b04a02926000006')
+      end
+    end
+
+    describe 'next_billing_date' do
+      it 'returns next billing date for the subscription' do
+        subscription.next_billing_date.should eq(Date.new(2013, 9, 04))
+      end
+    end
+
+    describe 'periodicity' do
+      it 'returns subscription charge periodicity' do
+        subscription.periodicity.should eq(:monthly)
+      end
     end
   end
 
-  describe 'create_subscription' do
+  describe 'line_items' do
+    it 'returns subscription line items' do
+      subscription.line_items.first.name.should eq("Quota de centre")
+      subscription.line_items.last.name.should eq("Quota d'alumnes")
+    end
+  end
+
+  describe 'customer' do
+    it 'returns subscription customer data' do
+      subscription.customer.cif.should eq('12312345B')
+      subscription.customer.name.should eq('Codegram')
+      subscription.customer.email.should eq('blah@bleh.com')
+    end
+  end
+
+  describe 'coupons' do
     before do
-      stub_request_factory('test/fixtures/subscription_6.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions', :post)
-      stub_request_factory('test/fixtures/subscription_6.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions?id=5024e70c2b04a02926000006')
-      subscription_data = stub
-      @subscription = subscriptions.create(subscription_data)
+      stub_request_factory('test/fixtures/coupons.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006/coupons')
     end
 
-    it 'creates a new subscription for current app' do
-      @subscription.william_id.should == "5024e70c2b04a02926000006"
-    end
-
-    it 'returns an Subscription object' do
-      @subscription.class.should eq(William::Subscription)
+    it 'returns a CouponsCollection' do
+      subscription.coupons.class.should eq(William::CouponsCollection)
     end
   end
-end
 
-describe William::Subscription do
-  let(:subscription) do
-    response = File.read('test/fixtures/subscription_6.json')
-    William::Subscription.new()
+  describe 'invoices' do
+    before do
+      stub_request_factory('test/fixtures/invoices.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006/invoices')
+    end
+
+    it 'returns a InvoicesCollection' do
+      subscription.invoices.class.should eq(William::InvoicesCollection)
+    end
   end
-
-  describe ''
 end
