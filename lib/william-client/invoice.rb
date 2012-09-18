@@ -1,6 +1,7 @@
 module William
   class Invoice
     def initialize(invoice)
+      @resource = invoice
     end
 
     def william_id
@@ -8,7 +9,7 @@ module William
     end
 
     def sent_at
-      return nil unless attributes['sent_at']
+      return nil unless sent?
       Date.parse(attributes['sent_at'])
     end
 
@@ -21,7 +22,12 @@ module William
     end
 
     def link
-      resource.links['pdf']
+      resource.links.links
+    end
+
+    def sent?
+      return false unless attributes['sent_at'] != ''
+      true
     end
 
     private
