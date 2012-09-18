@@ -8,11 +8,11 @@ module William
     end
 
     def current
-      @coupons.reject{|coupon| coupon.used_at}
+      @coupons.reject{|coupon| coupon.applied?}
     end
 
     def applied
-      @coupons.select{|coupon| coupon.used_at}
+      @coupons.select{|coupon| coupon.applied?}
     end
 
     def each(&block)

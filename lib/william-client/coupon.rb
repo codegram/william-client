@@ -21,6 +21,11 @@ module William
       attributes['amount'].to_f
     end
 
+    def applied?
+      return false unless used_at
+      true
+    end
+
     private
     def resource
       @resource
