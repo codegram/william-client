@@ -47,7 +47,7 @@ describe William::CouponsCollection do
 
     it 'creates a new coupon for a subscription' do
       coupon_data = stub
-      coupon = coupons.create(subscription, coupon_data)
+      coupon = coupons.create(coupon_data)
     end
   end
 end
