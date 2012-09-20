@@ -61,7 +61,7 @@ module William
       if create_response.success?
         new_subscription = Subscription.new(Hyperclient::Resource.new(response.url.concat("?id=#{create_response['id']}")))
         @subscriptions << new_subscription
-        find(create_response['id'])
+        new_subscription
       else
         nil
       end
