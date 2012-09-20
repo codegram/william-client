@@ -18,6 +18,13 @@ module William
       @subscriptions = response.reload.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
     end
 
+    # Public: Fetch again all subscription from William.
+    #
+    # Returns nothing.
+    def reload
+      @subscriptions = response.reload.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
+    end
+
     def each(&block)
       @subscriptions.each(&block)
     end
@@ -52,6 +59,8 @@ module William
       # TODO: This has to be refactored whenever hyperclient returns an
       # Hyperclient::Resource instead of HTTParty response.
       if create_response.success?
+        new_subscription = Subscription.new(Hyperclient::Resource.new(response.url.concat("?id=#{create_response['id']}")))
+        @subscriptions << new_subscription
         find(create_response['id'])
       else
         nil
@@ -64,11 +73,7 @@ module William
     #
     # Returns an Hyperclient::Resource.
     def find(subscription_id)
-      # TODO: Finish Hyperclient gem uri_template branch so we can use the
-      # subscriptions link 'find' to retrieve a single subscription.
-      # The link is already present at subscription's view of the William API.
-      resource = Hyperclient::Resource.new(@client.links['subscriptions'].url.concat("?id=#{subscription_id}"))
-      Subscription.new(resource)
+      @subscriptions.select{|subscription| subscription.william_id == subscription_id}.first
     end
 
     private

@@ -9,7 +9,7 @@ describe William::Subscription do
   before do
     stub_request_factory('test/fixtures/entry_point.json','http://localhost:3000')
     stub_request_factory('test/fixtures/subscriptions.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions')
-    stub_request_factory('test/fixtures/subscription_6.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions?id=5024e70c2b04a02926000006')
+    stub_request_factory('test/fixtures/subscription_show.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions?id=5024e70c2b04a02926000006')
   end
 
   describe 'attributes' do

@@ -64,6 +64,7 @@
         },
         "id":"5024e70c2b04a02926000006",
         "periodicity":"monthly",
+        "next_billing_date":"2013-09-04",
         "items":[
           {
             "name":"Quota de centre",
