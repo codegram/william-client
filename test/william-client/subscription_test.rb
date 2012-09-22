@@ -9,16 +9,9 @@ describe William::Subscription do
   before do
     stub_request_factory('test/fixtures/entry_point.json','http://localhost:3000')
     stub_request_factory('test/fixtures/subscriptions.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions')
-    stub_request_factory('test/fixtures/subscription_show.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions?id=5024e70c2b04a02926000006')
   end
 
   describe 'attributes' do
-    describe 'william_id' do
-      it 'returns subscription id in william system' do
-        subscription.william_id.should eq('5024e70c2b04a02926000006')
-      end
-    end
-
     describe 'next_billing_date' do
       it 'returns next billing date for the subscription' do
         subscription.next_billing_date.should eq(Date.new(2013, 9, 04))

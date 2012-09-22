@@ -1,9 +1,9 @@
 module William
-  # Class: This class is used to manage all william subscriptions for current
+  # Class: This class is used to manage all William subscriptions for current
   # App.
   #
-  # Returns an array of Subscription.
-  class SubscriptionsCollection
+  # Returns an Array of Subscription.
+  class SubscriptionsCollection < Collection
     include Enumerable
 
     # Public: Initializes the SubscriptionsCollection with the necessary 
@@ -15,26 +15,14 @@ module William
     # Returns nothing.
     def initialize(client)
       @client = client
-      @subscriptions = response.reload.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
+      @collection = response.reload.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
     end
 
     # Public: Fetch again all subscription from William.
     #
     # Returns nothing.
     def reload
-      @subscriptions = response.reload.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
-    end
-
-    def each(&block)
-      @subscriptions.each(&block)
-    end
-
-    def [](index)
-      @subscriptions[index]
-    end
-
-    def last
-      @subscriptions.last
+      @collection = response.reload.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
     end
 
     # Public: Creates a new subscription for the application given the
@@ -60,7 +48,7 @@ module William
       # Hyperclient::Resource instead of HTTParty response.
       if create_response.success?
         new_subscription = Subscription.new(Hyperclient::Resource.new(response.url.concat("?id=#{create_response['id']}")))
-        @subscriptions << new_subscription
+        @collection << new_subscription
         new_subscription
       else
         nil
@@ -73,7 +61,7 @@ module William
     #
     # Returns an Hyperclient::Resource.
     def find(subscription_id)
-      @subscriptions.select{|subscription| subscription.william_id == subscription_id}.first
+      @collection.select{|subscription| subscription.william_id == subscription_id}.first
     end
 
     private

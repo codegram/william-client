@@ -2,7 +2,7 @@ module William
   # Class: This class is used to manage all coupons for a Subscription.
   #
   # Returns an array of Coupon.
-  class CouponsCollection
+  class CouponsCollection < Collection
     include Enumerable
 
     # Public: Initializes the CouponsCollections.
@@ -13,29 +13,21 @@ module William
     # Returns nothing.
     def initialize(subscription, coupons)
       @subscription = subscription
-      @coupons = coupons.map{|coupon| Coupon.new(coupon) }
+      @collection = coupons.map{|coupon| Coupon.new(coupon) }
     end
 
-    # Public: Lists all coupons that has not been applied to an invoice yet.
+    # Public: Lists all coupons that have not been applied to an invoice yet.
     #
     # Returns an Array of Coupon.
     def current
-      @coupons.reject{|coupon| coupon.applied?}
+      @collection.reject(&:applied?)
     end
 
     # Public: Lists all coupons that has already been applied to an invoice.
     #
     # Returns an Array of Coupon.
     def applied
-      @coupons.select{|coupon| coupon.applied?}
-    end
-
-    def each(&block)
-      @coupons.each(&block)
-    end
-
-    def [](index)
-      @coupons[index]
+      @collection.select(&:applied?)
     end
 
     # Public: Creates a new coupon for a given subscription.

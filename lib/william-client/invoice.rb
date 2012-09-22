@@ -1,23 +1,6 @@
 module William
   # Class: This class represents a William Invoice.
-  class Invoice
-    # Public: Initializes the Invoice with the resource data it
-    # represents.
-    #
-    # resource - Hyperclient::Resource with all invoice data.
-    #
-    # Returns nothing.
-    def initialize(resource)
-      @resource = resource
-    end
-
-    # Public: Invoice id at William service.
-    #
-    # Returns a String.
-    def william_id
-      attributes['id']
-    end
-
+  class Invoice < Resource
     # Public: Date in which the coupon has been sent to the customer.
     #
     # Returns a Date.
@@ -47,21 +30,6 @@ module William
     def sent?
       return false unless attributes['sent_at'] != ''
       true
-    end
-
-    private
-    # Internal: Used to return original resource of this cooupon.
-    #
-    # Returns an Hyperclient::Resource.
-    def resource
-      @resource
-    end
-
-    # Internal: Shortcut for coupon attributes.
-    #
-    # Returns an Array of attributes.
-    def attributes
-      resource.attributes
     end
   end
 end

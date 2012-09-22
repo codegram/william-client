@@ -1,23 +1,6 @@
 module William
   # Class: This class represents a William Coupon.
-  class Coupon
-    # Public: Initializes the Coupon with the resource data it
-    # represents.
-    #
-    # resource - Hyperclient::Resource with all coupon data.
-    #
-    # Returns nothing.
-    def initialize(resource)
-      @resource = resource
-    end
-
-    # Public: Coupon id at William service.
-    #
-    # Returns a String.
-    def william_id
-      attributes['id']
-    end
-
+  class Coupon < Resource
     # Public: Date in which the coupon has been applied to an invoice.
     #
     # Returns a Date.
@@ -33,7 +16,7 @@ module William
       attributes['description']
     end
 
-    # Public: The total discount.
+    # Public: The total amount that will be applied as a discount.
     #
     # Returns a Float.
     def amount
@@ -47,21 +30,6 @@ module William
     def applied?
       return false unless used_at
       true
-    end
-
-    private
-    # Internal: Used to return original resource of this cooupon.
-    #
-    # Returns an Hyperclient::Resource.
-    def resource
-      @resource
-    end
-
-    # Internal: Shortcut for coupon attributes.
-    #
-    # Returns an Array of attributes.
-    def attributes
-      resource.attributes
     end
   end
 end
