@@ -3,7 +3,7 @@ module William
     extend Forwardable
 
     attr_reader :resource
-    def_delegator :@resource, :attributes
+    def_delegators :@resource, :attributes, :links
 
     # Public: Initializes the resource with the data it represents.
     #
@@ -19,13 +19,6 @@ module William
     # Returns a String.
     def william_id
       attributes['id']
-    end
-
-    # Public: Links available for this resource.
-    #
-    # Returns an Array of links.
-    def links
-      resource.links
     end
   end
 end
