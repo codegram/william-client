@@ -28,8 +28,7 @@ module William
     #
     # Returns Boolean.
     def sent?
-      return false unless attributes['sent_at'] != ''
-      true
+      !attributes['sent_at'].empty?
     end
   end
 end

@@ -1,4 +1,5 @@
 module William
+  # Used to connect and retrieve data from William.
   class Client
     include Hyperclient
 

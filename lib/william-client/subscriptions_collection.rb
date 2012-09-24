@@ -61,7 +61,7 @@ module William
     #
     # Returns an Hyperclient::Resource.
     def find(subscription_id)
-      @collection.select{|subscription| subscription.william_id == subscription_id}.first
+      @collection.detect{|subscription| subscription.william_id == subscription_id}
     end
 
     private

@@ -1,4 +1,5 @@
 module William
+  # Represents a single William resource.
   class Resource
     extend Forwardable
 
