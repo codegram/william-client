@@ -1,0 +1,43 @@
+{
+  "_links":{
+    "app":{
+      "href":"/apps/5024e70c2b04a02926000001"
+    },
+    "self":{
+      "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006"
+    },
+    "invoices":{
+      "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006/invoices"
+    },
+    "coupons":{
+      "href":"/apps/5024e70c2b04a02926000001/subscriptions/5024e70c2b04a02926000006/coupons"
+    }
+  },
+  "id":"5024e70c2b04a02926000006",
+  "periodicity":"monthly",
+  "next_billing_date":"2013-09-04",
+  "items":[
+    {
+      "name":"Quota de centre",
+      "unit_price":300,
+      "units":1
+    },
+    {
+      "name":"Quota d'alumnes",
+      "unit_price":9,
+      "units":25
+    }
+  ],
+  "_embedded":{
+    "customer":{
+    "_links":{
+      "self":{
+        "href":""
+      }
+    },
+    "cif":"12312345B",
+    "name":"Codegram",
+    "email":"blah@bleh.com"
+    }
+  }
+}
