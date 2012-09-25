@@ -10,3 +10,11 @@ require 'william-client'
 require 'rspec/autorun'
 require 'webmock/rspec'
 require 'json'
+
+def stub_request_factory(file, url, method = :get)
+  response = File.read(file)
+  stub_request(method, url).
+    with(headers: {'Content-Type'=>'application/json'}).
+    to_return(status: 200, body: response, headers: {content_type: 'application/json'})
+  response
+end
