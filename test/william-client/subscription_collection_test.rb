@@ -2,7 +2,7 @@ require_relative '../test_helper'
 
 describe William::SubscriptionsCollection do
   let(:client) do
-    William::Client.new
+    William::Client.build
   end
 
   let(:subscriptions) do
@@ -25,7 +25,7 @@ describe William::SubscriptionsCollection do
   describe 'create' do
     before do
       stub_request_factory('test/fixtures/subscription_create.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions', :post)
-      stub_request_factory('test/fixtures/subscription_create.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions?id=5024e70c2b04a02926000009')
+      stub_request_factory('test/fixtures/subscription_create.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions?subscription_id=5024e70c2b04a02926000009')
       subscription_data = stub
       @subscription = subscriptions.create(subscription_data)
     end
@@ -42,7 +42,6 @@ describe William::SubscriptionsCollection do
 
   describe 'find' do
     before do
-      stub_request_factory('test/fixtures/subscription_show.json','http://localhost:3000/apps/5024e70c2b04a02926000001/subscriptions?id=5024e70c2b04a02926000006')
       @subscription_id = '5024e70c2b04a02926000006'
       @subscription = subscriptions.find(@subscription_id)
     end
