@@ -4,7 +4,8 @@
       "href":"/apps/5024e70c2b04a02926000001/subscriptions"
     },
     "find":{
-      "href":"/apps/5024e70c2b04a02926000001/subscriptions?id={subscription_id}"
+      "href":"/apps/5024e70c2b04a02926000001/subscriptions{?subscription_id}",
+      "templated": "true"
     }
   },
   "_embedded":{
