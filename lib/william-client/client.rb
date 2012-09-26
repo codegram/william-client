@@ -1,16 +1,12 @@
 module William
   # Used to connect and retrieve data from William.
   class Client
-    include Hyperclient
 
-    # Public: Initializes the client with the necessary connection to the
-    # service.
+    # Public: Entry point to william API.
     #
-    # Returns nothing.
-    def initialize
-      self.class.entry_point{ William.config.william_api_url }
-      self.class.http_options(headers: {"Content-Type" => "application/json"}, debug: true)
-      self.class.auth{ {type: :digest, user: William.config.app_name, password: William.config.app_token} }
+    # Returns an Hyperclient::Entrypoint.
+    def self.build
+      Hyperclient::EntryPoint.new(William.config.william_api_url, William.config.options.dup)
     end
   end
 end
