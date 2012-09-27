@@ -15,14 +15,7 @@ module William
     # Returns nothing.
     def initialize(client)
       @client = client
-      @collection = response.reload.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
-    end
-
-    # Public: Fetch again all subscription from William.
-    #
-    # Returns nothing.
-    def reload
-      @collection = response.reload.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
+      @collection = response.embedded.subscriptions.map{|subscription| Subscription.new(subscription)}
     end
 
     # Public: Creates a new subscription for the application given the
@@ -47,7 +40,8 @@ module William
       # TODO: This has to be refactored whenever hyperclient returns an
       # Hyperclient::Resource instead of HTTParty response.
       if create_response.success?
-        new_subscription = Subscription.new(Hyperclient::Resource.new(response.url.concat("?id=#{create_response['id']}")))
+        resource = response.links['find'].expand(subscription_id: create_response['id']).resource
+        new_subscription = Subscription.new(resource)
         @collection << new_subscription
         new_subscription
       else

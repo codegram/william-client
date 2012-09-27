@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  gem.add_runtime_dependency "hyperclient", ">= 0.0.8"
+  gem.add_runtime_dependency "hyperclient"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "webmock"
 end

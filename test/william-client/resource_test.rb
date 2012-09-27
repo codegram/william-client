@@ -2,7 +2,7 @@ require_relative '../test_helper'
 
 describe William::Subscription do
   let(:subscription) do
-    collection = William::SubscriptionsCollection.new(William::Client.new)
+    collection = William::SubscriptionsCollection.new(William::Client.build)
     collection.find('5024e70c2b04a02926000006')
   end
 

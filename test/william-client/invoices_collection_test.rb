@@ -2,12 +2,12 @@ require_relative '../test_helper'
 
 describe William::InvoicesCollection do
   let(:subscription) do
-    collection = William::SubscriptionsCollection.new(William::Client.new)
+    collection = William::SubscriptionsCollection.new(William::Client.build)
     collection.find('5024e70c2b04a02926000006')
   end
 
   let(:invoices) do
-    invoices = subscription.send(:resource).links.invoices.reload.embedded.invoices
+    invoices = subscription.send(:resource).links.invoices.embedded.invoices
     William::InvoicesCollection.new(invoices)
   end
 

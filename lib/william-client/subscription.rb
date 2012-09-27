@@ -35,7 +35,7 @@ module William
     #
     # Returns a CouponsCollection.
     def coupons
-      coupons = links.coupons.reload.embedded.coupons
+      coupons = links.coupons.embedded.coupons
       CouponsCollection.new(resource, coupons)
     end
 
@@ -43,7 +43,7 @@ module William
     #
     # Returns a InvoicesCollection.
     def invoices
-      invoices = @resource.links.invoices.reload.embedded.invoices
+      invoices = @resource.links.invoices.embedded.invoices
       InvoicesCollection.new(invoices)
     end
 
