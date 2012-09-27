@@ -6,7 +6,7 @@ module William
     #
     # Returns an Hyperclient::Entrypoint.
     def self.build
-      Hyperclient::EntryPoint.new(William.config.william_api_url, William.config.options.dup)
+      Hyperclient::EntryPoint.new(William.config.william_api_url, William.config.options)
     end
   end
 end
