@@ -31,6 +31,21 @@ module William
       @william_api_url || ENV['WILLIAM_API_URL']
     end
 
+    # The connection options to initialize the entry point to William API.
+    #
+    # @return [Hash]
+    #   [:auth] - Authentication type and access data.
+    #   [:headers] - Content type.
+    #   [:debug] - Enable debug mode [true/false]
+    def options
+      options = {}
+      options[:auth]    = {type: :digest, user: app_name, password: app_token}
+      options[:headers] = {'Content-Type' => 'application/json'}
+      options[:debug]   = false
+      options
+    end
+
+    private
     # The "app_name" used for digest authentication.
     #
     # @return [String]

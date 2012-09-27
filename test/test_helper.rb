@@ -1,4 +1,5 @@
 gem 'rspec'
+gem 'pry'
 
 require "william-client/config"
 William.config.william_api_url = "http://localhost:3000"
@@ -10,6 +11,7 @@ require 'william-client'
 require 'rspec/autorun'
 require 'webmock/rspec'
 require 'json'
+require 'pry'
 
 def stub_request_factory(file, url, method = :get)
   response = File.read(file)
