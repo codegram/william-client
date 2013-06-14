@@ -45,7 +45,6 @@ module William
       options
     end
 
-    private
     # The "app_name" used for digest authentication.
     #
     # @return [String]
