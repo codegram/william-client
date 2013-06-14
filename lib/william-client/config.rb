@@ -18,9 +18,7 @@ module William
   # to run.
   #
   class Config
-    attr_accessor :william_api_url,
-                :app_name,
-                :app_token
+    attr_accessor :william_api_url
 
     # The "william_api_url" used to connect with william service.
     #
@@ -42,6 +40,8 @@ module William
       options[:auth]    = {type: :digest, user: app_name, password: app_token}
       options[:headers] = {'Content-Type' => 'application/json'}
       options[:debug]   = false
+      options[:app_name] = app_name
+      options[:app_token] = app_token
       options
     end
 
