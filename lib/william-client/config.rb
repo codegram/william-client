@@ -18,7 +18,9 @@ module William
   # to run.
   #
   class Config
-    attr_accessor :william_api_url
+    attr_accessor :william_api_url,
+                  :app_name,
+                  :app_token
 
     # The "william_api_url" used to connect with william service.
     #
