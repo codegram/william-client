@@ -4,6 +4,7 @@ module William
   # Returns an array of Coupon.
   class CouponsCollection < Collection
     include Enumerable
+    attr_reader :subscription
 
     # Public: Initializes the CouponsCollections.
     #
