@@ -40,7 +40,7 @@ module William
       # TODO: This has to be refactored whenever hyperclient returns an
       # Hyperclient::Resource instead of HTTParty response.
       if create_response.success?
-        resource = response.links['find'].expand(subscription_id: create_response['id']).resource
+        resource = response.links['find'].expand(subscription_id: create_response.body['id']).resource
         new_subscription = Subscription.new(resource)
         @collection << new_subscription
         new_subscription
